@@ -3607,6 +3607,10 @@ define RouterOptions
 		sed -i "/RTCONFIG_WIFI6E/d" $(1); \
 		echo "RTCONFIG_WIFI6E=y" >>$(1); \
 	fi; \
+	if [ "$(SOFTCENTER)" = "y" ]; then \
+	sed -i "/RTCONFIG_SOFTCENTER/d" $(1); \
+	echo "RTCONFIG_SOFTCENTER=y" >>$(1); \
+	fi; \
 	if [ "$(VAR_NVRAM)" = "y" ]; then \
 		sed -i "/RTCONFIG_VAR_NVRAM/d" $(1); \
 		echo "RTCONFIG_VAR_NVRAM=y" >>$(1); \
