@@ -306,6 +306,12 @@ void start_ubifs(void)
 		_dprintf("%s: bind mount " UBIFS_MNT_DIR "/firmware fail! (r = %d)\n", __func__, r);
 #endif
 
+	if (!check_if_dir_exist("/jffs/scripts/")) mkdir("/jffs/scripts/", 0755);
+	if (!check_if_dir_exist("/jffs/configs/")) mkdir("/jffs/configs/", 0755);
+	if (!check_if_dir_exist("/jffs/addons/")) mkdir("/jffs/addons/", 0755);
+	if (!check_if_dir_exist(UPLOAD_CERT_FOLDER)) mkdir(UPLOAD_CERT_FOLDER, 0600);
+
+	adjust_jffs_content();
 }
 
 void stop_ubifs(int stop)
