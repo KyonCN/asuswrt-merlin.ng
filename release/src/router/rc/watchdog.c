@@ -301,7 +301,7 @@ static int no_assoc_check = 0;
 
 void led_table_ctrl(int on_off);
 
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 #define WDG_MONITOR_PERIOD 60 /* second */
 static int wdg_timer_alive = 1;
 #endif
@@ -4861,7 +4861,7 @@ static void catch_sig(int sig)
 
 		wsc_timeout = WPS_TIMEOUT_COUNT;
 	}
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 	else if (sig == SIGHUP)
 	{
 		dbG("[watchdog] Reset alarm timer...\n");
@@ -5950,7 +5950,7 @@ void init_sig()
 		|| sig == SIGUSR2
 		|| sig == SIGTSTP
 		|| sig == SIGALRM
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 		|| sig == SIGHUP
 #endif
 #ifdef RTCONFIG_RALINK
@@ -5969,7 +5969,7 @@ void init_sig()
 #if defined(RTCONFIG_QCA)
 	g_t1 = uptime();
 #endif
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 	fn_acts[SIGHUP]  = catch_sig;
 #endif
 #ifdef RTCONFIG_RALINK
@@ -5982,7 +5982,7 @@ void init_sig()
 	sigaddset(&sigs_to_catch, SIGUSR2);
 	sigaddset(&sigs_to_catch, SIGTSTP);
 	sigaddset(&sigs_to_catch, SIGALRM);
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 	sigaddset(&sigs_to_catch, SIGHUP);
 #endif
 #ifdef RTCONFIG_RALINK
@@ -5991,7 +5991,7 @@ void init_sig()
 }
 
 #ifdef SW_DEVLED
-void init_sig_swled() 
+void init_sig_swled()
 {
 	int sig;
         for (sig = 0; sig < (_NSIG - 1); sig++) {
@@ -6013,7 +6013,7 @@ void init_sig_swled()
 }
 #endif
 
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 void wdg_heartbeat(int sig)
 {
 	if(factory_debug())
@@ -9012,7 +9012,7 @@ wdp:
 	ntevent_disk_usage_check();
 #endif
 
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 	if (pids("wdg_monitor"))
 		kill_pidfile_s("/var/run/wdg_monitor.pid", SIGUSR1);
 #endif
@@ -9236,7 +9236,7 @@ int sw_devled_main(int argc, char *argv[])
 }
 #endif
 
-#if defined(RTAC1200G) || defined(RTAC1200GP)
+#if defined(RTAC1200G) || defined(RTAC1200GP) || defined(RTK3)
 /* workaroud of watchdog timer shutdown */
 int wdg_monitor_main(int argc, char *argv[])
 {
