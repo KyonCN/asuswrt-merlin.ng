@@ -1561,11 +1561,11 @@ function change_nat(state) {
 							</tr>
 
 							<tr id="nat_type_tr" style="display:none;">
-								<th>NAT Type</th>
+								<th><#NAT_Type#></th>
 								<td>
 									<select name="nat_type" class="input_option">
-										<option value="0" <% nvram_match("nat_type", "0", "selected"); %>>Symmetric</option>
-										<option value="1" <% nvram_match("nat_type", "1", "selected"); %>>Fullcone</option>
+										<option value="0" <% nvram_match("nat_type", "0", "selected"); %>><#Symmetric#></option>
+										<option value="1" <% nvram_match("nat_type", "1", "selected"); %>><#Fullcone#></option>
 									</select>
 								</td>
 							</tr>
