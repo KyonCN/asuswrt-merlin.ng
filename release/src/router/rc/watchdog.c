@@ -104,10 +104,6 @@
 #endif
 #include <json.h>
 
-#ifdef RTK3
-#include "k3.h"
-#endif
-
 #define BCM47XX_SOFTWARE_RESET	0x40		/* GPIO 6 */
 #define RESET_WAIT		2		/* seconds */
 #define RESET_WAIT_COUNT	RESET_WAIT * 10 /* 10 times a second */
@@ -5111,11 +5107,7 @@ void fake_etlan_led(void)
 	phystatus = hnd_get_phy_status("eth5");
 	if (!phystatus)
 #else
-#ifdef RTK3
-	phystatus = GetPhyStatusk3(0);
-#else
 	phystatus = GetPhyStatus(0, NULL);
-#endif
 #if defined(RTCONFIG_EXTPHY_BCM84880)
 	if ((nvram_get_int("wans_extwan") && !(phystatus & 0x3e)) || // configure 2.5G port as WAN, need to consider 1G WAN connectivity
 			(!nvram_get_int("wans_extwan") && !(phystatus & 0x1e)))  // configure 2.5G port as LAN, ignore 2.5G port

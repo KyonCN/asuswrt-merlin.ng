@@ -75,10 +75,6 @@
 #include <sys/statfs.h>
 #endif
 
-#ifdef RTK3
-#include "k3.h"
-#endif
-
 #define SHELL "/bin/sh"
 #define LOGIN "/bin/login"
 
