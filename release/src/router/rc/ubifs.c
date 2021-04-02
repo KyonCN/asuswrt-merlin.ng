@@ -200,7 +200,7 @@ void start_ubifs(void)
 
 			/* make ubi volume */
 			_dprintf("*** ubifs: create jffs2 volume\n");
-			eval("ubimkvol", UBI_DEV_PATH, "-s", vol_size_s, "-N", UBIFS_VOL_NAME);
+			eval("ubimkvol", UBI_DEV_PATH, "-N", UBIFS_VOL_NAME, "-m");
 		}
 	}
 #endif
@@ -281,12 +281,7 @@ void start_ubifs(void)
 	notice_set("ubifs", format ? "Formatted" : "Loaded");
 
 #if 1 /* enable legacy & asus autoexec */
-	if (((p = nvram_get("ubifs_exec")) != NULL) && (*p != 0)) {
-		chdir(UBIFS_MNT_DIR);
-		system(p);
-		chdir("/");
-	}
-	if (((p = nvram_get("jffs2_exec")) != NULL) && (*p != 0)) {
+	if (nvram_get_int("ubifs_exec") == 1 || nvram_get_int("jffs2_exec") == 1) {
 		chdir(UBIFS_MNT_DIR);
 		system(p);
 		chdir("/");
